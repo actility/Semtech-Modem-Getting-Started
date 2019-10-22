@@ -124,7 +124,7 @@ If your Application Server does not support end-to-end security, you can decode 
 
 First, send data to an HTTP capture service such as [hookbin](https://hookbin.com/). Copy the endpoint address in destination of the Application Server created in [Create Application Server](#create-application-server-and-routing-profile), trigger an uplink on the board and refresh the Hookbin page:
 
-<img src=resource/hookbin.gif alt="Retrieve link from Hookbin" width="600"/>
+<img src=resources/hookbin.gif alt="Retrieve link from Hookbin" width="600"/>
 
 In <DevEUI_uplink> document, the applicative payload is present in ***<payload_hex>*** and the AppSKey in <***AppSKey***>. AppSKey is either in clear or encrypted depending on the setting selected in Semtech JS in [Set Wrapping keys for AppSKey](#set-wrapping-keys-for-appskey).
 
