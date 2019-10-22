@@ -32,11 +32,11 @@ Please anticipate your request as it may requires a few days to be processed.
 
 ## Collect the Device identifiers
 In order to commission a Semtech modem in ThingPark Wireless, the following idenfiers are required:
-* DevEUI: LoRaWAN device 64-bit unique identifier assigned by the Device manufacturer (or using Secure Element default value)
-* JoinEUI: LoRaWAN JS 64-bit unique identifier of the Join Server on which AppKey of the device is stored
-* PIN code: Device secret code allowing to claim device in Semtech JS
+* ***DevEUI***: LoRaWAN device 64-bit unique identifier assigned by the Device manufacturer (or using Secure Element default value)
+* ***JoinEUI***: LoRaWAN JS 64-bit unique identifier of the Join Server on which AppKey of the device is stored
+* ***PIN code***: Device secret code allowing to claim device in Semtech JS
 
-Connect to the Semtech modem evaluation kit with serial port at 115200 bps, and trigger the Evaluation mode using the following sequence:
+Connect to the Semtech modem evaluation kit with serial port at ***baud rate***=`115200 bps`, and trigger the Evaluation mode using the following sequence:
 1. Press and hold down the User button (blue) on the Nucleo board.
 1. While holding down the User button, press and release the Reset button (black)
 1. Continue to hold down User button for at least 5 seconds and release the User button
@@ -74,21 +74,45 @@ Select Claim Individual device and input DevEUI and PIN code previously retrieve
 
 ### Set Wrapping keys for AppSKey
 
-AppSKey might be delivered to Network Server (and then Application Server) in clear text or encrypted with a Key Encryption Key.
+***AppSKey*** might be delivered to Network Server (and then Application Server) in clear text or encrypted with a Key Encryption Key.
 In order to setup how AppSKey is delivered, go to _Keys and Credentials_
 
 <img src=resources/SetupKEK.gif alt="Setup KEK" width="600"/>
 
+By default, AppSKey is delivered in clear text (no wrapping key). You can use this default but ThingPark Wireless supports any type.
+
 ## Provision/Activate device in ThingPark Wireless
+
+### Create Application Server and routing profile
+ 
+To create a new Application Server routing profile, first create a local Application Server. 
+
+Click on _Application Servers_, _Add Application servers_ -> Create and select ***Type***=`HTTP Application Server (LoRaWAN)`
+
+<img src=resources/CreateAS.gif alt="Create AS" width="600"/>
+
+Select ***Content Type*** according to your Application Server requirement, but note that the Application Server **must** support end-to-end encryption (see [Activate device](#activate-device)).
+Then add the destination route by clicking Route -> Add.
+
+<img src=resources/CreateASroute.gif alt="Create AS route" width="600"/>
+
+Once the Application Server is created, create an Application Server routing profile. Click on _AS routing profiles_ -> Create and select ***Type***=`Local application server` and your ***Destination***.
+
+<img src=resources/CreateASRP.gif alt="Create AS routing profile" width="600"/>
 
 ### Provision device in Network Server
 Login your ThingPark DEV1 partner account and open [Device Manager](https://dev1.thingpark.com/deviceManager)
 The device is provisioned as usual, except no AppKey needs to be provided to the Network Server
+
 Click on Add Device -> Create
-![Create Device](resource/DeviceDM.gif)
-Select Manufacturer = Generic and you LoRaWAN device profile, activation type and fill in the DevEUI/AppEUI retrieved previously (note that AppEUI is the JoinEUI previously retrieved, which was the initial name in specifications earlier than LoRaWAN1.0.3).
-It is mandatory to select a Connectivity Plan and an Application Server routing Profile for your device to be fully provisioned and ready to be activated.
-![Device creation fields](resource/CreateDeviceDM.gif)
+
+<img src=resources/DeviceDM.gif alt="Create Device" width="600"/>
+
+Select ***Manufacturer*** = `Generic` and your ***LoRaWAN device profile***, ***activation type*** and fill in the ***DevEUI***/***AppEUI***retrieved previously (note that AppEUI is the JoinEUI previously retrieved, which was the initial name in specifications earlier than LoRaWAN1.0.3).
+
+It is mandatory to select a ***Connectivity Plan*** and an ***Application Server routing Profile*** for your device to be fully provisioned and ready to be activated.
+
+<img src=resources/CreateDeviceDM.gif alt="Device creation fields" width="600"/>
 
 ### Activate device 
 The device is now ready to be activated
