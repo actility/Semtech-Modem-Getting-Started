@@ -115,9 +115,20 @@ It is mandatory to select a ***Connectivity Plan*** and an ***Application Server
 <img src=resources/CreateDeviceDM.gif alt="Device creation fields" width="600"/>
 
 ### Activate device 
-The device is now ready to be activated
-LoRaWAN data can be monitored using [Wireless Logger](https://dev1.thingpark.com/wLogger)
+The device is now ready to be activated. Power the board and set it in evaluation mode as done previously in [Collect the Device identifiers](#collect-the-device-identifiers).
+Then input the following commands for EU868 and send "HELLO" message:
 
+```
+>------- Evaluation Mode ---------<
+
+ Type 'h' to view available commands
+
+> setregion 1
+> join
+> requesttx 102 0 72 69 76 76 79
+```
+
+LoRaWAN data can be monitored using [Wireless Logger](https://dev1.thingpark.com/wLogger).
 Note that data is shown encrypted in Wireless Logger and the payload is delivered to the Application Server encrypted with the AppSKey.
 
 If your Application Server does not support end-to-end security, you can decode payload manually. 
