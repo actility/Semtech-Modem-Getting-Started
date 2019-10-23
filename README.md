@@ -5,7 +5,7 @@ RaphaelApfeldorfer-Actility edited this page on Oct 21th, 2019
 
 ## Introduction
 
-This guide will direct you through the process of getting started with developing a secure LoRa end device product using Semtech modem along with ThingPark Wireless Network Server DEV1 for partners
+This guide will direct you through the process of getting started with developing a secure LoRaWAN end device product using Semtech modem along with ThingPark Wireless Network Server DEV1 for partners
 
 This guide describes the following:
 
@@ -18,7 +18,7 @@ This guide describes the following:
 ## Get a partner account for ThingPark Wireless
 To request an account on ThingPark Wireless that can operate with Semtech modem, post the following email
 ```
-To: partner-activation@actility.com
+To: semtech-modem@actility.com
 Subject: ThingPark Activation evaluation
 Mail: Please provide me a free test account for ThingPark Activation.
 Account Name: Paul Smith
@@ -68,13 +68,13 @@ Click on _Devices_
 
 <img src=resources/SemtechJS.gif alt="Semtech device" width="600"/>
 
-Select Claim Individual device and input DevEUI and PIN code previously retrieved
+Select _Claim Individual device_ and input ***DevEUI*** and ***PIN*** previously retrieved
 
 <img src=resources/ClaimDevice.gif alt="Claim device" width="600"/>
 
 ### Set Wrapping keys for AppSKey
 
-***AppSKey*** might be delivered to Network Server (and then Application Server) in clear text or encrypted with a Key Encryption Key.
+***AppSKey*** might be delivered by the Join Server to Network Server (and then Application Server) in clear text or encrypted with a Key Encryption Key.
 In order to setup how AppSKey is delivered, go to _Keys and Credentials_
 
 <img src=resources/SetupKEK.gif alt="Setup KEK" width="600"/>
@@ -92,7 +92,7 @@ Click on _Application Servers_, _Add Application servers_ -> Create and select *
 <img src=resources/CreateAS.gif alt="Create AS" width="600"/>
 
 Select ***Content Type*** according to your Application Server requirement, but note that the Application Server **must** support end-to-end encryption (see [Activate device](#activate-device)).
-Then add the destination route by clicking Route -> Add.
+Then add the destination route by clicking _Route_ -> Add.
 
 <img src=resources/CreateASroute.gif alt="Create AS route" width="600"/>
 
@@ -104,11 +104,11 @@ Once the Application Server is created, create an Application Server routing pro
 Login your ThingPark DEV1 partner account and open [Device Manager](https://dev1.thingpark.com/deviceManager)
 The device is provisioned as usual, except no AppKey needs to be provided to the Network Server
 
-Click on Add Device -> Create
+Click on _Add Device_ -> Create
 
 <img src=resources/DeviceDM.gif alt="Create Device" width="600"/>
 
-Select ***Manufacturer*** = `Generic` and your ***LoRaWAN device profile***, ***activation type*** and fill in the ***DevEUI***/***AppEUI***retrieved previously (note that AppEUI is the JoinEUI previously retrieved, which was the initial name in specifications earlier than LoRaWAN1.0.3).
+Select ***Manufacturer*** = `Generic` and your ***LoRaWAN device profile***, ***activation type*** and fill in the ***DevEUI***/***AppEUI*** retrieved previously (note that AppEUI is the JoinEUI previously retrieved, which was the initial name in specifications earlier than LoRaWAN1.0.3).
 
 It is mandatory to select a ***Connectivity Plan*** and an ***Application Server routing Profile*** for your device to be fully provisioned and ready to be activated.
 
@@ -122,7 +122,7 @@ Note that data is shown encrypted in Wireless Logger and the payload is delivere
 
 If your Application Server does not support end-to-end security, you can decode payload manually. 
 
-First, send data to an HTTP capture service such as [hookbin](https://hookbin.com/). Copy the endpoint address in destination of the Application Server created in [Create Application Server](#create-application-server-and-routing-profile), trigger an uplink on the board and refresh the Hookbin page:
+First, send data to an HTTP capture service such as [hookbin](https://hookbin.com/). Copy the (Hookbin) endpoint address to ThingPark Wireless as the destination of the Application Server created in [Create Application Server](#create-application-server-and-routing-profile), then trigger an uplink on the board and refresh the Hookbin page:
 
 <img src=resources/hookbin.gif alt="Retrieve link from Hookbin" width="600"/>
 
